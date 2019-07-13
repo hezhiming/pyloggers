@@ -8,7 +8,6 @@
 from __future__ import (absolute_import, unicode_literals)
 
 import functools
-import inspect
 import logging
 import sys
 import threading
@@ -115,7 +114,7 @@ def make_file_logger(logger_name, level=logging.INFO, filename=None, max_bytes=N
 CONSOLE = _Logger.get_console_logger('CONSOLE_LOGGER')
 
 
-def log(func):
+def log_input_output(func):
     """记录函数的输入-输出值
 
     Usage:
@@ -128,13 +127,11 @@ def log(func):
 
     @functools.wraps(func)
     def _wrapper(*args, **kwargs):
-        ismethod = inspect.ismethod(func)
-
-        CONSOLE.info(f"====function start.==== {args}  {kwargs}")
+        CONSOLE.info("====function start.==== {args}  {kwargs}".format(args=args, kwargs=kwargs))
 
         func_result = func(*args, **kwargs)
 
-        CONSOLE.info(f"==== function end. ==== {func_result}")
+        CONSOLE.info("==== function end. ==== {func_result}".format(func_result=func_result))
 
         return func_result
 
