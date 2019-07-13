@@ -1,0 +1,12 @@
+.pytest_cache/
+.idea/
+build/
+dist/
+*.egg-info/
+htmlcov/
+
+
+*.pyc
+*.so
+*.log
+.coverage
