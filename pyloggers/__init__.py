@@ -15,16 +15,18 @@ from logging import handlers
 
 _THREADLOCAL = threading.local()
 _THREADLOCAL.loggername_logger = {}
+DEFAULT_FORMAT = ('[%(levelname)s] '
+                  '[%(asctime)s %(created)f] '
+                  '[%(name)s %(module)s] '
+                  '[%(process)d %(processName)s %(thread)d %(threadName)s] '
+                  '[%(filename)s %(lineno)s %(funcName)s] '
+                  '%(message)s')
+DEFAULT_FORMATTER = logging.Formatter(fmt=DEFAULT_FORMAT)
 
 
 class _Logger(object):
-    _DEFAULT_FORMAT = ('[%(levelname)s] '
-                       '[%(asctime)s %(created)f] '
-                       '[%(name)s %(module)s] '
-                       '[%(process)d %(processName)s %(thread)d %(threadName)s] '
-                       '[%(filename)s %(lineno)s %(funcName)s] '
-                       '%(message)s')
-    _DEFAULT_FORMATTER = logging.Formatter(fmt=_DEFAULT_FORMAT)
+    _DEFAULT_FORMAT = DEFAULT_FORMAT
+    _DEFAULT_FORMATTER = DEFAULT_FORMATTER
     _DEFAULT_LOG_FILENAME = './PYTHON_LOG.log'
     _DEFAULT_SINGLE_FILE_MAX_BYTES = (1 * 1024 * 1024 * 1024)  # 1G
     _DEFAULT_BACKUP_COUNT = 10
