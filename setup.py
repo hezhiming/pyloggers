@@ -18,7 +18,7 @@ def _get_readme():
 
 setuptools.setup(
     name="pyloggers",
-    version="0.3.1",
+    version="0.5",
     author="he.zhiming",
     author_email="he.zhiming@foxmail.com",
     description="loggers for Python2&3",
